@@ -27,7 +27,11 @@ class EmpleadoEventual extends Empleado
     public function calcularComision() {
         $suma = 0;
         foreach ($this->montosDeVentas as $unaVenta) {
+            
             $suma += $unaVenta;
+        }
+        if ( (int) $suma <= 0){
+            throw new \Exception();
         }
         // La comisión es el 5% del promedio de ventas:
         return ($suma / count($this->montosDeVentas)) * 0.05;
